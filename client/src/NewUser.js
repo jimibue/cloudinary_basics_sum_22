@@ -22,7 +22,7 @@ const NewUser = () => {
     e.preventDefault();
     // by doing we will be send file params and name param in our post req
     const data = new FormData()
-    // specific to the case, here I'll say a photo is not need for user
+    // specific to the case, here I'll say a photo is not needed for user
     if(files[0]){
       data.append('file', files[0].file)
     }
@@ -40,7 +40,9 @@ const NewUser = () => {
   };
 
   const handleUpdateFiles = (fileItems) => {
-    console.log("handleUpdateFiles");
+    // fileItems[0].file is how we grab the file
+    // we'll setFiles to fileItems for now but
+    // well use fileItems[0].file in our handsubmit
     console.log("fileItems:", fileItems[0].file);
     setFiles(fileItems)
   };

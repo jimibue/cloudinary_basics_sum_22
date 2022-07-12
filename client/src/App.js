@@ -1,4 +1,5 @@
 import "./App.css";
+import NewPhoto from "./NewPhoto";
 import NewUser from "./NewUser";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <hr />
       <NewUser />
       <hr />
+      <NewPhoto />
     </div>
   );
 }

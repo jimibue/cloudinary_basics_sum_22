@@ -1,5 +1,9 @@
 class TacosController < ApplicationController
 
+    def get_data
+      render json: {users: User.all, photos:Photo.all}
+    end
+
     def new_user
         # getting file from client
         file = params[:file]
@@ -28,4 +32,29 @@ class TacosController < ApplicationController
     end
 
  
+    def new_photo
+        # bad names here for demo
+      user = User.find(params[:mustard])
+      file = params[:yyy]
+
+      # here we do need a file
+      if(!file)
+        render json: {error: 'no photo provided'}, status: 422
+        return
+      end
+
+      begin
+        # save to cloudinary
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+        #if successfull do DB
+        photo = user.photos.new(description:params[:desc], image_url:cloud_image["secure_url"] )
+        if(photo.save)
+            render json: photo
+        else
+            render json: {error: photo.errors.full_messages}, status: 422
+        end
+       rescue => e
+            render json: {error: e}, status: 400
+       end
+    end
 end

@@ -81,3 +81,12 @@ rescue => e
   # and e will give us an idea about why it didn't
 end
 ```
+
+# FRONT END
+
+## we have choosen to use filepond: a little harder but has more functional
+
+add filepond
+```
+yarn add filepond react-filepond filepond-plugin-image-exif-orientation filepond-plugin-image-preview
+```
